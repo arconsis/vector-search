@@ -1,0 +1,94 @@
+{
+  "classes": [
+    {
+      "class": "Movie",
+      "description": "Movie model data",
+      "vectorizer": "text2vec-contextionary",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": {
+        "efConstruction": 500
+      },
+      "moduleConfig": {
+        "text2vec-contextionary": {
+          "vectorizeClassName": false
+        }
+      },
+      "properties": [
+        {
+          "name": "movieId",
+          "description": "Unique movie id",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "adult",
+          "description": "Whether the movie is age restricted",
+          "dataType": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "title",
+          "description": "Title",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "genres",
+          "description": "Genres of the movie",
+          "dataType": [
+            "string[]"
+          ]
+        },
+        {
+          "name": "overview",
+          "description": "Summary for the movie",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "images",
+          "description": "Image of the product",
+          "dataType": [
+            "Poster"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "Poster",
+      "description": "Poster of a movie",
+      "vectorizer": "img2vec-neural",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": {
+        "efConstruction": 500
+      },
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "movie",
+          "description": "Related movie",
+          "dataType": [
+            "Movie"
+          ]
+        },
+        {
+          "name": "image",
+          "description": "poster image of a movie",
+          "dataType": [
+            "blob"
+          ]
+        }
+      ]
+    }
+  ]
+}

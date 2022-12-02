@@ -1,0 +1,150 @@
+{
+    "classes": [
+        {
+            "class": "Furniture",
+            "description": "Furniture model data",
+            "vectorizer": "text2vec-contextionary",
+            "vectorIndexType": "hnsw",
+            "vectorIndexConfig": {
+                "efConstruction": 500
+            },
+            "moduleConfig": {
+                "text2vec-contextionary": {
+                    "vectorizeClassName": false
+                }
+            },
+            "properties": [
+                {
+                    "name": "productId",
+                    "description": "Unique product id",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "modelName",
+                    "description": "Name of the product",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "price",
+                    "description": "Price of the product",
+                    "dataType": [
+                        "number"
+                    ]
+                },
+                {
+                    "name": "description",
+                    "description": "Description for the product",
+                    "dataType": [
+                        "string[]"
+                    ]
+                },
+                {
+                    "name": "technicalDescription",
+                    "description": "Detailed technical description for the product",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "highlights",
+                    "description": "Highlight list of the product",
+                    "dataType": [
+                        "string[]"
+                    ]
+                },
+                {
+                    "name": "colors",
+                    "description": "Colors of the product",
+                    "dataType": [
+                        "string[]"
+                    ]
+                },
+                {
+                    "name": "sourceCountry",
+                    "description": "Country where it's made",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "material",
+                    "description": "Materials used in the product",
+                    "dataType": [
+                        "string[]"
+                    ]
+                },
+                {
+                    "name": "seatUpholstery",
+                    "description": "Upholstery of the seating area",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "backUpholstery",
+                    "description": "Upholstery of the back rest",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "coverMaterial",
+                    "description": "Material used on the covering areas",
+                    "dataType": [
+                        "string[]"
+                    ]
+                },
+                {
+                    "name": "category",
+                    "description": "Product category",
+                    "dataType": [
+                        "string"
+                    ]
+                },
+                {
+                    "name": "images",
+                    "description": "Image of the product",
+                    "dataType": [
+                        "FurnitureImage"
+                    ]
+                }
+            ]
+        },
+        {
+            "class": "FurnitureImage",
+            "description": "Image of a furniture product",
+            "vectorizer": "img2vec-neural",
+            "vectorIndexType": "hnsw",
+            "vectorIndexConfig": {
+                "efConstruction": 500
+            },
+            "moduleConfig": {
+                "img2vec-neural": {
+                    "imageFields": [
+                        "poster"
+                    ]
+                }
+            },
+            "properties": [
+                {
+                    "name": "furniture",
+                    "description": "Meta info of the movie",
+                    "dataType": [
+                        "Furniture"
+                    ]
+                },
+                {
+                    "name": "image",
+                    "description": "Image of a furniture",
+                    "dataType": [
+                        "blob"
+                    ]
+                }
+            ]
+        }
+    ]
+}

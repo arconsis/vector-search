@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.arconsis.recommendationcoreservice";
+
+service RecommendationGRPCService {
+  rpc getMovieRecommendation(MovieRequest) returns (MovieRecommendations);
+}
+
+message MovieRequest {
+  string imageURL = 1;
+  string image = 2; // base64 encoded image content
+
+  MovieFilter filter = 3;
+  SearchOptions options = 4;
+}
+
+message SearchOptions {
+  double minCertainty = 1;
+  uint32 maxResults = 2;
+}
+
+message MovieFilter {
+  string description = 1;
+  string genre = 2;
+}
+
+message MovieRecommendations {
+  repeated MovieRecommendation recommendations = 1;
+}
+
+message MovieRecommendation {
+  string movieId = 1;
+  double certainty = 2;
+}
