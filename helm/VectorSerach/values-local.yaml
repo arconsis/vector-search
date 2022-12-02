@@ -1,0 +1,3 @@
+weaviate:
+  storage:
+    size: 8Gi

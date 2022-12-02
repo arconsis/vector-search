@@ -1,0 +1,6 @@
+dependencies:
+- name: weaviate
+  repository: file://../dependencyCharts/weaviate
+  version: 15.2.0
+digest: sha256:2f534ed6e3daaed6cddbdaf84286d799c5c7099fd3569186b229354c3a5075b1
+generated: "2022-12-12T16:32:14.658817+01:00"

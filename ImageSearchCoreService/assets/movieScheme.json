@@ -1,0 +1,199 @@
+{
+  "classes": [
+    {
+      "class": "Movie",
+      "description": "Movie model data",
+      "vectorizer": "text2vec-contextionary",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": {
+        "efConstruction": 500
+      },
+      "moduleConfig": {
+        "text2vec-contextionary": {
+          "vectorizeClassName": false
+        }
+      },
+      "properties": [
+        {
+          "name": "movieId",
+          "description": "Unique movie id",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "adult",
+          "description": "Whether the movie is age restricted or not",
+          "dataType": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "collection",
+          "description": "Collection the movie belongs to",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "budget",
+          "description": "budget for the movie",
+          "dataType": [
+            "int"
+          ]
+        },
+        {
+          "name": "genres",
+          "description": "Genres of the movie",
+          "dataType": [
+            "string[]"
+          ]
+        },
+        {
+          "name": "originalLanguage",
+          "description": "Original language of the movie",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "originalTitle",
+          "description": "Original title of the movie",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "overview",
+          "description": "Summary for the movie",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "popularity",
+          "description": "Popularity of the movie",
+          "dataType": [
+            "number"
+          ]
+        },
+        {
+          "name": "productionCompanies",
+          "description": "Production companies",
+          "dataType": [
+            "string[]"
+          ]
+        },
+        {
+          "name": "productionCountries",
+          "description": "Production countries",
+          "dataType": [
+            "string[]"
+          ]
+        },
+        {
+          "name": "releaseDate",
+          "description": "Release date",
+          "dataType": [
+            "date"
+          ]
+        },
+        {
+          "name": "revenue",
+          "description": "Revenue the movie made",
+          "dataType": [
+            "int"
+          ]
+        },
+        {
+          "name": "runtime",
+          "description": "Runtime of the movie",
+          "dataType": [
+            "int"
+          ]
+        },
+        {
+          "name": "spokenLanguages",
+          "description": "Languages used in the movie",
+          "dataType": [
+            "string[]"
+          ]
+        },
+        {
+          "name": "status",
+          "description": "Status of the movie",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "tagline",
+          "description": "Tagline",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "title",
+          "description": "Title",
+          "dataType": [
+            "string"
+          ]
+        },
+        {
+          "name": "voteAverage",
+          "description": "Average vote",
+          "dataType": [
+            "number"
+          ]
+        },
+        {
+          "name": "voteCount",
+          "description": "Total votes",
+          "dataType": [
+            "int"
+          ]
+        },
+        {
+          "name": "images",
+          "description": "Image of the product",
+          "dataType": [
+            "Poster"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "Poster",
+      "description": "Poster of a movie",
+      "vectorizer": "img2vec-neural",
+      "vectorIndexType": "hnsw",
+      "vectorIndexConfig": {
+        "efConstruction": 500
+      },
+      "moduleConfig": {
+        "img2vec-neural": {
+          "imageFields": [
+            "image"
+          ]
+        }
+      },
+      "properties": [
+        {
+          "name": "movie",
+          "description": "Related movie",
+          "dataType": [
+            "Movie"
+          ]
+        },
+        {
+          "name": "image",
+          "description": "poster image of a movie",
+          "dataType": [
+            "blob"
+          ]
+        }
+      ]
+    }
+  ]
+}
