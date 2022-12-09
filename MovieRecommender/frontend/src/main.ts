@@ -1,7 +1,12 @@
-import {createApp} from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import './assets/main.css'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
 
-const app = createApp(App)
+Vue.use(Buefy)
 
-app.mount('#app')
+Vue.config.productionTip = false
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
