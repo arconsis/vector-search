@@ -67,7 +67,6 @@ export default Vue.extend({
           image: image
         }
       )
-      console.log(recommendedMovies, typeof recommendedMovies)
     }
   }
 });

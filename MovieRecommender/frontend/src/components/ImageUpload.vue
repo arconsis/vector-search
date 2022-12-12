@@ -6,12 +6,11 @@
                     <b-icon class="file-icon" icon="upload"></b-icon>
                     <span class="file-label">Upload picture</span>
                 </span>
-                <span class="file-name" v-if="file">
+                <span class="file-name" v-if="file" @change="emitImageString(file)">
                     {{ file.name }}
                 </span>
             </b-upload>
         </b-field>
-        <b-button @click="emitImageString(file)" v-if="file" class="is-success">Recommend movies</b-button>
     </div>
 </template>
 
@@ -23,6 +22,11 @@ export default Vue.extend({
   data() {
     return {
         file: null
+    }
+  },
+  watch: {
+    file(newFile, oldFile) {
+        this.emitImageString(newFile)
     }
   },
   methods: {
