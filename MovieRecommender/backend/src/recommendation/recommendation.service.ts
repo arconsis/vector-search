@@ -1,14 +1,17 @@
-import {Injectable} from "@nestjs/common";
-import { MovieResponseDto } from "src/movie/movie.response.dto";
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { RecommendationResponseDto } from "./recommendation.response.dto";
 
 @Injectable()
 export class RecommendationService {
+    constructor(private configService: ConfigService) {}
 
-    private async getMovies(image: string): Promise<MovieResponseDto> {
+    private async getMovies(image: string): Promise<RecommendationResponseDto> {
         //TODO add API call to backend for image
         const movieIds = ["436270", "505642", "76600", "829280", "438148"]
-        // const 
 
+        //TODO add Api
+        const tmdbApiKey = this.configService.get<string>('TMDB_API_KEY')
 
         return {
             movieId: "string",
@@ -18,40 +21,7 @@ export class RecommendationService {
             image: "string",
         }
     }
-
-    async getRecommendationsByImage(image: string): Promise<MovieResponseDto> {
+    async getRecommendationsByImage(image: string): Promise<RecommendationResponseDto> {
         return await this.getMovies(image)
     }
-
-    // getRecommendationsById(id: string): RecommendationResponseDto {
-    //     return {
-    //         similar: [
-    //             {
-    //                 productId: "1",
-    //                 certainty: 0.5,
-    //                 kind: "chair",
-    //                 name: "mock product",
-    //                 image: "http://localhost:7122/productImage/VAXS90RB_HB_EB_FREI_1.jpg",
-    //                 description: "mocked description for a wonderfully comfortable chair",
-    //             },
-    //             {
-    //                 productId: "1",
-    //                 certainty: 0.5,
-    //                 kind: "chair",
-    //                 name: "mock product",
-    //                 image: "http://localhost:7122/productImage/VAXS90RB_HB_EB_FREI_2.jpg",
-    //                 description: "mocked description for a wonderfully comfortable chair",
-    //             }
-    //         ], related: [
-    //             {
-    //                 productId: "2",
-    //                 certainty: 0.5,
-    //                 kind: "chair",
-    //                 name: "mock product",
-    //                 image: "http://localhost:7122/productImage/TO4E79RB_HB_EB_FREI_1.jpg",
-    //                 description: "mocked description for a wonderfully comfortable chair",
-    //             }
-    //         ]
-    //     }
-    // }
 }

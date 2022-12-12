@@ -1,6 +1,7 @@
-import {ProductResponseDto} from "../product/product.response.dto";
-
-export interface RecommendationResponseDto {
-    similar: ProductResponseDto[]
-    related: ProductResponseDto[]
+export class RecommendationResponseDto {
+    movieId: string
+    name: string
+    certainty: number
+    description: string
+    image: string
 }

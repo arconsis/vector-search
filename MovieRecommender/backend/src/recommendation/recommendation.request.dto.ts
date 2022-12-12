@@ -1,3 +1,3 @@
-export interface RecommendationRequestDto {
-    productId: string
+export class RecommendationRequestDto {
+    imageBase64: string
 }

@@ -1,10 +1,10 @@
-import {Module} from '@nestjs/common';
-import {RecommendationModule} from "./recommendation/recommendation.module";
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { RecommendationModule } from "./recommendation/recommendation.module";
 
 @Module({
-    imports: [RecommendationModule],
+    imports: [ConfigModule.forRoot(), RecommendationModule],
     controllers: [],
     providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}
