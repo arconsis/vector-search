@@ -8,7 +8,7 @@ export class RecommendationController {
     constructor(private readonly recommendationService: RecommendationService) {}
 
     @Get("image")
-    async getRecommendations(@Body() image: RecommendationRequestDto): Promise<RecommendationResponseDto> {
+    async getRecommendations(@Body() image: RecommendationRequestDto): Promise<RecommendationResponseDto[]> {
         return await this.recommendationService.getRecommendationsByImage(image.imageBase64)
     }
 }

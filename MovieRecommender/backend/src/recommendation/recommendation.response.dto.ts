@@ -3,5 +3,5 @@ export class RecommendationResponseDto {
     name: string
     certainty: number
     description: string
-    image: string
+    imageUrl: string
 }

@@ -6,7 +6,7 @@
                     <b-icon class="file-icon" icon="upload"></b-icon>
                     <span class="file-label">Upload picture</span>
                 </span>
-                <span class="file-name" v-if="file" @change="emitImageString(file)">
+                <span class="file-name" v-if="file && windowSizeNotPhone()" @change="emitImageString(file)">
                     {{ file.name }}
                 </span>
             </b-upload>
@@ -39,6 +39,9 @@ export default Vue.extend({
         reader.onerror = (error) => {
             console.log('Error: ', error)
         }
+    },
+    windowSizeNotPhone() {
+        return window.innerWidth > 800
     }
   }
 });

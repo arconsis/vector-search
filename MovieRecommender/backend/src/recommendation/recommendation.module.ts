@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { TmdbModule } from 'src/tmdb/tmdb.module';
 import { RecommendationController } from "./recommendation.controller";
 import { RecommendationService } from "./recommendation.service";
 
 @Module({
-    imports: [ConfigModule],
+    imports: [TmdbModule],
     controllers: [RecommendationController],
     providers: [RecommendationService],
 })
-export class RecommendationModule {
-}
+export class RecommendationModule {}

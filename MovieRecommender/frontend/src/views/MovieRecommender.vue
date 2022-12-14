@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="recommender-wrapper">
     <h1 class="title is-1">Movie Recommender</h1>
-    <img :src="uploadedImage" v-if="uploadedImage.length" alt="Placeholder image" id="uploaded-image">
+    <h1 class="subtitle is-4">Get movie recommendations based on the movie poster you upload</h1>
+    <img :src="uploadedImage" v-if="uploadedImage.length" alt="Placeholder image" id="uploaded-image" />
     <ImageUpload @image-uploaded="getMoviesByImage" id="image-upload"/>
     <SimilarMovies :movies="similarMovies" v-if="(similarMovies.length > 0)" id="similar-movies"/>
+    <CopyrightTmbd class="copyright-tmdb"/>
   </div>
 </template>
 
@@ -11,17 +13,20 @@
 import Vue from 'vue'
 import ImageUpload from '../components/ImageUpload.vue'
 import SimilarMovies from '../components/SimilarMovies.vue'
+import CopyrightTmbd from '../components/CopyrightTmbd.vue';
 import {getMoviesByReferenceImage} from '../rest/MoviesApi'
+import { Movie } from '../rest/MoviesDto';
 
 export default Vue.extend({
   name: 'MovieRecommender',
   components: {
     ImageUpload,
-    SimilarMovies
-  },
+    SimilarMovies,
+    CopyrightTmbd
+},
   data() {
     return {
-      similarMovies: [] as Array<object>,
+      similarMovies: [] as Array<Movie>,
       uploadedImage: "" as string
     }
   },
@@ -29,50 +34,20 @@ export default Vue.extend({
     async getMoviesByImage(image: string) {
       this.uploadedImage = image
       this.similarMovies = []
+
       const recommendedMovies = await getMoviesByReferenceImage(image)
-      this.similarMovies.push(
-        {
-          movieId: "1",
-          name: "test movie 1",
-          certainty: 1,
-          description: "test description",
-          image: image
-        },
-        {
-          movieId: "2",
-          name: "test movie 2",
-          certainty: 2,
-          description: "test description2",
-          image: image
-        },
-        {
-          movieId: "3",
-          name: "test movie 3",
-          certainty: 3,
-          description: "test description3",
-          image: image
-        },
-        {
-          movieId: "4",
-          name: "test movie 4",
-          certainty: 4,
-          description: "test description4",
-          image: image
-        },
-        {
-          movieId: "5",
-          name: "test movie 5",
-          certainty: 5,
-          description: "test description5",
-          image: image
-        }
-      )
+      recommendedMovies.forEach(movie => this.similarMovies.push(movie))
     }
   }
 });
 </script>
 
 <style scoped>
+.recommender-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 #image-upload {
   display: flex;
   justify-content: center;
@@ -85,6 +60,10 @@ export default Vue.extend({
 #uploaded-image {
   width: 15%;
   height: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 900px) {
@@ -92,5 +71,10 @@ export default Vue.extend({
     width: 25%;
     height: 25%;
   }
+}
+
+.copyright-tmdb {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 </style>

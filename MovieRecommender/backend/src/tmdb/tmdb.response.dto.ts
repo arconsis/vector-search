@@ -1,4 +1,4 @@
-export interface Movie {
+export class TmdbResponseDto {
   movieId: string
   name: string
   certainty: number
