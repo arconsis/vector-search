@@ -31,14 +31,7 @@ export default Vue.extend({
   },
   methods: {
     emitImageString(imageFile: File) {
-        const reader = new FileReader()
-        reader.readAsDataURL(imageFile)
-        reader.onload = () => {
-            this.$emit("image-uploaded", reader.result)
-        }
-        reader.onerror = (error) => {
-            console.log('Error: ', error)
-        }
+        this.$emit("image-uploaded", imageFile)
     },
     windowSizeNotPhone() {
         return window.innerWidth > 800

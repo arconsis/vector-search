@@ -4,7 +4,7 @@
     <h1 class="subtitle is-4">Get movie recommendations based on the movie poster you upload</h1>
     <img :src="uploadedImage" v-if="uploadedImage.length" alt="Placeholder image" id="uploaded-image" />
     <ImageUpload @image-uploaded="getMoviesByImage" id="image-upload"/>
-    <SimilarMovies :movies="similarMovies" v-if="(similarMovies.length > 0)" id="similar-movies"/>
+    <SimilarMovies :movies="similarMovies.movies" v-if="(similarMovies.movies.length > 0)" id="similar-movies"/>
     <CopyrightTmbd class="copyright-tmdb"/>
   </div>
 </template>
@@ -14,8 +14,8 @@ import Vue from 'vue'
 import ImageUpload from '../components/ImageUpload.vue'
 import SimilarMovies from '../components/SimilarMovies.vue'
 import CopyrightTmbd from '../components/CopyrightTmbd.vue';
-import {getMoviesByReferenceImage} from '../rest/MoviesApi'
-import { Movie } from '../rest/MoviesDto';
+import { getMoviesByReferenceImageFile } from '../rest/MoviesApi'
+import { Movies } from '../rest/MoviesDto';
 
 export default Vue.extend({
   name: 'MovieRecommender',
@@ -26,17 +26,25 @@ export default Vue.extend({
 },
   data() {
     return {
-      similarMovies: [] as Array<Movie>,
-      uploadedImage: "" as string
+      similarMovies: { movies: [] } as Movies,
+      uploadedImage: '' as string
     }
   },
   methods: {
-    async getMoviesByImage(image: string) {
-      this.uploadedImage = image
-      this.similarMovies = []
-
-      const recommendedMovies = await getMoviesByReferenceImage(image)
-      recommendedMovies.forEach(movie => this.similarMovies.push(movie))
+    async getMoviesByImage(image: File) {
+      this.uploadedImage = await this.getFileString(image)
+      this.similarMovies = { movies: [] }
+      
+      const recommendedMovies = await getMoviesByReferenceImageFile(image)
+      recommendedMovies.movies.forEach(movie => this.similarMovies.movies.push(movie))
+    },
+    getFileString(image: File): Promise<string> {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(image)
+        reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result?.toString() : '')
+        reader.onerror = () => reject('')
+      })
     }
   }
 });

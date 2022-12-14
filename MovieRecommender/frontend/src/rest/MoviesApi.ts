@@ -1,14 +1,20 @@
-import type { Movie } from "@/rest/MoviesDto";
+import type { Movies } from "@/rest/MoviesDto";
 import axios from "axios";
 
 const axiosClient = axios.create({baseURL: "http://localhost:3000/recommendation"})
 
-export async function getMoviesByReferenceImage(image: string): Promise<Movie[]> {
+export async function getMoviesByReferenceImageFile(image: File): Promise<Movies> {
   try {
-    const result = await axiosClient.get(`/image`, {data: {imageBase64: image}})
-    return result.data as Movie[]
+    const formData = new FormData()
+    formData.append('file', image)
+    const result = await axiosClient.post(`/image`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    return result.data as Movies
   } catch (error) {
     console.log("Fetch has failed:", error)
-    return []
+    return { movies: [] }
   }
 }
