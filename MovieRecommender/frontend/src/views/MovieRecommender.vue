@@ -21,15 +21,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import ImageUpload from "../components/ImageUpload.vue";
-import SimilarMovies from "../components/SimilarMovies.vue";
-import CopyrightTmbd from "../components/CopyrightTmbd.vue";
-import { getMoviesByReferenceImageFile } from "../rest/MoviesApi";
-import { Movies } from "../rest/MoviesDto";
+import Vue from 'vue'
+import ImageUpload from '../components/ImageUpload.vue'
+import SimilarMovies from '../components/SimilarMovies.vue'
+import CopyrightTmbd from '../components/CopyrightTmbd.vue'
+import { getMoviesByReferenceImageFile } from '../rest/MoviesApi'
+import { Movies } from '../rest/MoviesDto'
 
 export default Vue.extend({
-  name: "MovieRecommender",
+  name: 'MovieRecommender',
   components: {
     ImageUpload,
     SimilarMovies,
@@ -38,32 +38,32 @@ export default Vue.extend({
   data() {
     return {
       similarMovies: { movies: [] } as Movies,
-      uploadedImage: "" as string,
-    };
+      uploadedImage: '' as string,
+    }
   },
   methods: {
     async getMoviesByImage(image: File) {
-      this.uploadedImage = await this.getFileString(image);
-      this.similarMovies = { movies: [] };
+      this.uploadedImage = await this.getFileString(image)
+      this.similarMovies = { movies: [] }
 
-      const recommendedMovies = await getMoviesByReferenceImageFile(image);
-      recommendedMovies.movies.forEach((movie) =>
+      const recommendedMovies = await getMoviesByReferenceImageFile(image)
+      recommendedMovies.movies.forEach(movie =>
         this.similarMovies.movies.push(movie)
-      );
+      )
     },
     getFileString(image: File): Promise<string> {
       return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(image);
+        const reader = new FileReader()
+        reader.readAsDataURL(image)
         reader.onload = () =>
           resolve(
-            typeof reader.result === "string" ? reader.result?.toString() : ""
-          );
-        reader.onerror = () => reject("");
-      });
+            typeof reader.result === 'string' ? reader.result?.toString() : ''
+          )
+        reader.onerror = () => reject('')
+      })
     },
   },
-});
+})
 </script>
 
 <style scoped>

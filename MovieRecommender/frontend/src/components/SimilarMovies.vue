@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import MovieCard from "../components/MovieCard.vue";
+import Vue from 'vue'
+import MovieCard from '../components/MovieCard.vue'
 
 export default Vue.extend({
   components: {
@@ -45,28 +45,28 @@ export default Vue.extend({
     return {
       currentSlide: 0,
       showSlides: 1,
-    };
+    }
   },
   mounted() {
-    window.addEventListener("resize", this.onResize);
-    this.onResize();
+    window.addEventListener('resize', this.onResize)
+    this.onResize()
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener('resize', this.onResize)
   },
   methods: {
     onResize() {
-      if (window.innerWidth < 800) this.showSlides = 1;
-      else if (window.innerWidth < 1100) this.showSlides = 2;
-      else if (window.innerWidth < 1500) this.showSlides = 3;
-      else this.showSlides = 4;
+      if (window.innerWidth < 800) this.showSlides = 1
+      else if (window.innerWidth < 1100) this.showSlides = 2
+      else if (window.innerWidth < 1500) this.showSlides = 3
+      else this.showSlides = 4
     },
     changeCurrentSlide(i: number) {
-      if (i < this.showSlides) this.currentSlide = i - 1;
-      else this.currentSlide = i - this.showSlides;
+      if (i < this.showSlides) this.currentSlide = i - 1
+      else this.currentSlide = i - this.showSlides
     },
   },
-});
+})
 </script>
 
 <style scoped>

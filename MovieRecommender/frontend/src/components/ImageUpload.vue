@@ -19,29 +19,29 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  name: "ImageUpload",
+  name: 'ImageUpload',
   data() {
     return {
       file: null,
-    };
+    }
   },
   watch: {
     file(newFile) {
-      this.emitImage(newFile);
+      this.emitImage(newFile)
     },
   },
   methods: {
     emitImage(imageFile: File) {
-      this.$emit("image-uploaded", imageFile);
+      this.$emit('image-uploaded', imageFile)
     },
     windowSizeNotPhone() {
-      return window.innerWidth > 800;
+      return window.innerWidth > 800
     },
   },
-});
+})
 </script>
 
 <style scoped>

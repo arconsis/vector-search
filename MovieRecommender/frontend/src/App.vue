@@ -5,15 +5,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import MovieRecommender from "./views/MovieRecommender.vue";
+import Vue from 'vue'
+import MovieRecommender from './views/MovieRecommender.vue'
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
   components: {
     MovieRecommender,
   },
-});
+})
 </script>
 
 <style>

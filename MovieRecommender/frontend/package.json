@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "prettier": "prettier --write 'src/**/*.{ts,vue}'"
+    "prettier": "prettier --write 'src/**/*.{ts,vue}'",
+    "prettier:check": "prettier --check 'src/**/*.{ts,vue}'"
   },
   "dependencies": {
     "axios": "^1.2.0",
