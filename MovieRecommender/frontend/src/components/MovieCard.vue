@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-image">
       <figure class="image is-3by4">
-        <img :src="movie.imageUrl" alt="Placeholder image">
+        <img :src="movie.imageUrl" alt="Placeholder image" />
       </figure>
     </div>
     <div class="card-content">
@@ -19,15 +19,13 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+import Vue from "vue";
 
-  export default Vue.extend({
-    props: {
-      movie: Object
-    }
-  })
+export default Vue.extend({
+  props: {
+    movie: Object,
+  },
+});
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

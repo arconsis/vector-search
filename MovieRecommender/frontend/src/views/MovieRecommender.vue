@@ -1,52 +1,68 @@
 <template>
   <div class="recommender-wrapper">
     <h1 class="title is-1">Movie Recommender</h1>
-    <h1 class="subtitle is-4">Get movie recommendations based on the movie poster you upload</h1>
-    <img :src="uploadedImage" v-if="uploadedImage.length" alt="Placeholder image" id="uploaded-image" />
-    <ImageUpload @image-uploaded="getMoviesByImage" id="image-upload"/>
-    <SimilarMovies :movies="similarMovies.movies" v-if="(similarMovies.movies.length > 0)" id="similar-movies"/>
-    <CopyrightTmbd class="copyright-tmdb"/>
+    <h1 class="subtitle is-4">
+      Get movie recommendations based on the movie poster you upload
+    </h1>
+    <img
+      :src="uploadedImage"
+      v-if="uploadedImage.length"
+      alt="Placeholder image"
+      id="uploaded-image"
+    />
+    <ImageUpload @image-uploaded="getMoviesByImage" id="image-upload" />
+    <SimilarMovies
+      :movies="similarMovies.movies"
+      v-if="similarMovies.movies.length > 0"
+      id="similar-movies"
+    />
+    <CopyrightTmbd class="copyright-tmdb" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import ImageUpload from '../components/ImageUpload.vue'
-import SimilarMovies from '../components/SimilarMovies.vue'
-import CopyrightTmbd from '../components/CopyrightTmbd.vue';
-import { getMoviesByReferenceImageFile } from '../rest/MoviesApi'
-import { Movies } from '../rest/MoviesDto';
+import Vue from "vue";
+import ImageUpload from "../components/ImageUpload.vue";
+import SimilarMovies from "../components/SimilarMovies.vue";
+import CopyrightTmbd from "../components/CopyrightTmbd.vue";
+import { getMoviesByReferenceImageFile } from "../rest/MoviesApi";
+import { Movies } from "../rest/MoviesDto";
 
 export default Vue.extend({
-  name: 'MovieRecommender',
+  name: "MovieRecommender",
   components: {
     ImageUpload,
     SimilarMovies,
-    CopyrightTmbd
-},
+    CopyrightTmbd,
+  },
   data() {
     return {
       similarMovies: { movies: [] } as Movies,
-      uploadedImage: '' as string
-    }
+      uploadedImage: "" as string,
+    };
   },
   methods: {
     async getMoviesByImage(image: File) {
-      this.uploadedImage = await this.getFileString(image)
-      this.similarMovies = { movies: [] }
-      
-      const recommendedMovies = await getMoviesByReferenceImageFile(image)
-      recommendedMovies.movies.forEach(movie => this.similarMovies.movies.push(movie))
+      this.uploadedImage = await this.getFileString(image);
+      this.similarMovies = { movies: [] };
+
+      const recommendedMovies = await getMoviesByReferenceImageFile(image);
+      recommendedMovies.movies.forEach((movie) =>
+        this.similarMovies.movies.push(movie)
+      );
     },
     getFileString(image: File): Promise<string> {
       return new Promise((resolve, reject) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(image)
-        reader.onload = () => resolve(typeof reader.result === 'string' ? reader.result?.toString() : '')
-        reader.onerror = () => reject('')
-      })
-    }
-  }
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.onload = () =>
+          resolve(
+            typeof reader.result === "string" ? reader.result?.toString() : ""
+          );
+        reader.onerror = () => reject("");
+      });
+    },
+  },
 });
 </script>
 

@@ -1,11 +1,11 @@
 export interface Movies {
-  movies: Movie[]
+  movies: Movie[];
 }
 
 export interface Movie {
-  movieId: string
-  name: string
-  certainty: number
-  description: string
-  imageUrl: string
+  movieId: string;
+  name: string;
+  certainty: number;
+  description: string;
+  imageUrl: string;
 }
