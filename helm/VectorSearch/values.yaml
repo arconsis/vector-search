@@ -1,0 +1,16 @@
+weaviate:
+  startupProbe:
+    enabled: true
+  env:
+    PROMETHEUS_MONITORING_ENABLED: true
+    QUERY_MAXIMUM_RESULTS: 10
+  backups:
+    filesystem:
+      enabled: true
+      envconfig:
+        BACKUP_FILESYSTEM_PATH: /tmp/backups
+  modules:
+    text2vec-contextionary:
+      enabled: true
+    img2vec-neural:
+      enabled: true

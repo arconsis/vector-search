@@ -1,5 +1,12 @@
+# macOS
 **/.DS_Store
 
-**/.vscode
+# Helm
+charts
 
+# IntelliJ
 **/.idea
+*.iml
+
+# VS Code
+**/.vscode

@@ -1,0 +1,11 @@
+apiVersion: v2
+name: vector-search
+description: A Helm chart for Kubernetes to deploy the vector search example
+type: application
+version: 0.0.1
+appVersion: "0.0.1-SNAPSHOT"
+
+dependencies:
+  - name: weaviate
+    version: 15.2.0
+    repository: "file://../dependencyCharts/weaviate"
