@@ -12,7 +12,7 @@ export class RecommendationService {
     // TODO move image Converter to own module for vector call
     // const imageAsBase64 = Buffer.from(imageFile.buffer).toString('base64')
     // TODO add API call to backend for image
-    const movies = ['436270', '505642', '76600', '829280', '438148']
+    const movies = ['436270', '532639', '76600', '829280', '438148']
 
     const receivedMovies = await this.tmdbService.getMovies(movies)
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="carousel-wrapper">
     <span v-for="i in movies.length">
       <b-icon
         v-if="i - 1 >= currentSlide && i - 1 < currentSlide + showSlides"
@@ -22,6 +22,7 @@
       class="movie-card"
       icon-size="is-medium"
       :repeat="true"
+      :arrow="false"
     >
       <template #item="list" type="is-success">
         <MovieCard :movie="list" />
@@ -73,5 +74,9 @@ export default Vue.extend({
 .movie-card {
   margin: 0 10% 30px 10%;
   max-width: 80%;
+}
+
+.carousel-wrapper {
+  height: 55rem;
 }
 </style>
