@@ -24,6 +24,12 @@ weaviate:
 
 replicaCount: 1
 
+weaviateHost: 
+  origin: changeme
+
+tmdb:
+  apiKey: changeme
+
 image:
   repository: ghcr.io/arconsis/vector-search/image-search-core-service
   pullPolicy: IfNotPresent
