@@ -14,9 +14,6 @@ jobs:
   build:
     name: build & push
     runs-on: ubuntu-latest
-    defaults:
-      run: 
-        working-directory: ImageSearchCoreService
 
     steps:
     - uses: actions/checkout@v3
@@ -30,16 +27,19 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: assemble
+        build-root-directory: ImageSearchCoreService
 
     - name: check
       uses: gradle/gradle-build-action@v2
       with:
         arguments: check
+        build-root-directory: ImageSearchCoreService
 
     - name: build container
       uses: gradle/gradle-build-action@v2
       with:
         arguments: build -x test -Dquarkus.container-image.build=true
+        build-root-directory: ImageSearchCoreService
 
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
@@ -53,3 +53,4 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: build -x test -Dquarkus.container-image.push=true -Dquarkus.container-image.group=${{ github.repository_owner }} -Dquarkus.container-image.name=${{ github.event.repository.name }}/image-search-core-service -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.additional-tags=${{ github.sha }},latest
+        build-root-directory: ImageSearchCoreService
