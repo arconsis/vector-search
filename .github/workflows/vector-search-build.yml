@@ -52,5 +52,5 @@ jobs:
     - name: Push Container
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build -x test -Dquarkus.container-image.push=true -Dquarkus.container-image.group=${{ github.repository_owner }} -Dquarkus.container-image.name=${{ github.event.repository.name }} -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.additional-tags=image-search-core-service/${{ github.sha }},image-search-core-service/latest
+        arguments: build -x test -Dquarkus.container-image.push=true -Dquarkus.container-image.group=${{ github.repository_owner }}/${{ github.event.repository.name }} -Dquarkus.container-image.name=image-search-core-service -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.additional-tags=${{ github.sha }},latest
         build-root-directory: ImageSearchCoreService
