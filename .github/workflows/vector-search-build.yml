@@ -1,4 +1,4 @@
-name: Vector Search Build
+name: ImageSearchCoreService Build
 
 on:
   push:
@@ -14,6 +14,9 @@ jobs:
   build:
     name: build & push
     runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ImageSearchCoreService
 
     steps:
     - uses: actions/checkout@v3
@@ -49,4 +52,4 @@ jobs:
     - name: Push Container
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build -x test -Dquarkus.container-image.push=true -Dquarkus.container-image.group=${{ github.repository_owner }} -Dquarkus.container-image.name=${{ github.event.repository.name }}/vector-search -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.additional-tags=${{ github.sha }},latest
+        arguments: build -x test -Dquarkus.container-image.push=true -Dquarkus.container-image.group=${{ github.repository_owner }} -Dquarkus.container-image.name=${{ github.event.repository.name }}/image-search-core-service -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.additional-tags=${{ github.sha }},latest
