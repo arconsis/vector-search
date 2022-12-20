@@ -32,4 +32,4 @@ jobs:
         with:
           context: "{{defaultContext}}:MovieRecommender/backend"
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/MovieRecommender:${{ github.sha }},ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/MovieRecommender:latest
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/movie-recommender:${{ github.sha }},ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/movie-recommender:latest
