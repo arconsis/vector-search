@@ -47,7 +47,7 @@ jobs:
       uses: vimeda/helm@v1.6.8
       with:
         release: 'movie-recommender'
-        namespace: 'movie-recommender'
+        namespace: 'vector-search'
         chart: 'helm/MovieRecommender/backend'
         token: '${{ secrets.GITHUB_TOKEN }}'
         values: |
