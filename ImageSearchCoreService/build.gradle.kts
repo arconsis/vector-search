@@ -33,6 +33,8 @@ dependencies {
 
     implementation("technology.semi.weaviate:client:${weaviateClientVersion}")
 
+    implementation("io.quarkus:quarkus-container-image-jib")
+
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
