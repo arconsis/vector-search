@@ -10,8 +10,8 @@ on:
 permissions:
   contents: write
 
-env:
-  VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
+# env:
+#   VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
 
 jobs:
   build-and-deploy:
@@ -24,8 +24,8 @@ jobs:
         run: |
           npm --prefix MovieRecommender/frontend/ ci
           npm --prefix MovieRecommender/frontend/ run build
-        # env:
-        #   VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
+        env:
+          VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
