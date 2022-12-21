@@ -46,7 +46,7 @@ jobs:
     - name: Helm Deploy to k8s
       uses: vimeda/helm@v1.6.8
       with:
-        release: 'movie-recommender'
+        release: 'movie-recommender-bff'
         namespace: 'vector-search'
         chart: 'helm/MovieRecommender/backend'
         token: '${{ secrets.GITHUB_TOKEN }}'
