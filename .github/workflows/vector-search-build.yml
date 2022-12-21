@@ -6,6 +6,7 @@ on:
     paths:
       - "ImageSearchCoreService/**"
       - "helm/VectorSearch/**"
+      - ".github/workflows/vector-search-build.yml"
   pull_request:
     branches: [ main ]
 
