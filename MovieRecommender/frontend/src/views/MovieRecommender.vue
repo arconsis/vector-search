@@ -96,6 +96,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
 }
+
 .copyright-tmdb {
   margin-top: 20px;
   margin-bottom: 10px;

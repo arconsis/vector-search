@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main, feature/add-pipelines ]
     paths:
-      - "MovieRecommender/frontend"
+      - "MovieRecommender/frontend/**"
   pull_request:
     branches: [ main ]
 
