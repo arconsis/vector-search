@@ -3,9 +3,9 @@ name: ImageSearchCoreService Build
 on:
   push:
     branches: [ main, feature/add-pipelines ]
-  paths:
-    - "ImageSearchCoreService/**"
-    - "helm/VectorSearch/**"
+    paths:
+      - "ImageSearchCoreService/**"
+      - "helm/VectorSearch/**"
   pull_request:
     branches: [ main ]
 
