@@ -67,11 +67,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.recommender-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 #image-upload {
   display: flex;
   justify-content: center;
@@ -97,6 +92,10 @@ export default Vue.extend({
   }
 }
 
+.recommender-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .copyright-tmdb {
   margin-top: 20px;
   margin-bottom: 10px;

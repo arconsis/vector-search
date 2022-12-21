@@ -2,8 +2,8 @@ name: Frontend Pages Build and Deploy
 on: 
   push:
     branches: [ main, feature/add-pipelines ]
-    # paths:
-    #   - MovieRecommender/frontend
+    paths:
+      - "MovieRecommender/frontend"
   pull_request:
     branches: [ main ]
 
