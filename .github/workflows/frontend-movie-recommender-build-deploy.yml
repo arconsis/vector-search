@@ -10,9 +10,6 @@ on:
 permissions:
   contents: write
 
-# env:
-#   VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
