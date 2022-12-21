@@ -67,13 +67,13 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+#similar-movies {
+  margin-top: 1rem;
+}
+
 #image-upload {
   display: flex;
   justify-content: center;
-}
-
-#similar-movies {
-  margin-top: 1rem;
 }
 
 #uploaded-image {
