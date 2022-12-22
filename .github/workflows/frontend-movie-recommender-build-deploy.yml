@@ -4,6 +4,7 @@ on:
     branches: [ main, feature/add-pipelines ]
     paths:
       - "MovieRecommender/frontend/**"
+      - ".github/workflows/frontend-movie-recommender-build-deploy.yml"
   pull_request:
     branches: [ main ]
 
@@ -26,5 +27,6 @@ jobs:
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.ref == 'main' }}
         with:
           folder: "MovieRecommender/frontend/dist"
