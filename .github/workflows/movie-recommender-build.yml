@@ -2,7 +2,7 @@ name: Movie Recommender Build
 
 on:
   push:
-    branches: [ main, feature/add-pipelines ]
+    branches: [ main ]
     paths:
         - "MovieRecommender/backend/**"
         - "helm/MovieRecommender/backend/**"

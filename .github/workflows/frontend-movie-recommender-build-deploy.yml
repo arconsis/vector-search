@@ -1,7 +1,7 @@
 name: Frontend Pages Build and Deploy
 on: 
   push:
-    branches: [ main, feature/add-pipelines ]
+    branches: [ main ]
     paths:
       - "MovieRecommender/frontend/**"
       - ".github/workflows/frontend-movie-recommender-build-deploy.yml"
