@@ -2,13 +2,13 @@ name: Movie Recommender Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '**' ]
     paths:
         - "MovieRecommender/backend/**"
         - "helm/MovieRecommender/backend/**"
         - ".github/workflows/movie-recommender-build.yml"
   pull_request:
-    branches: [ main ]
+    branches: [ '**' ]
 
 permissions:
   contents: read
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           logout: true
 
-      - name: Build & Push
+      - name: Build & Push 🔧
         uses: docker/build-push-action@v3
         if: ${{ github.ref == 'main' }}
         with:
@@ -41,7 +41,7 @@ jobs:
 
 
   deploy:
-    name: deploy to k8s
+    name: deploy to k8s 🚀
     runs-on: ubuntu-latest
     needs: build
     if: ${{ github.ref == 'main' }}

@@ -2,13 +2,13 @@ name: ImageSearchCoreService Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '**' ]
     paths:
       - "ImageSearchCoreService/**"
       - "helm/VectorSearch/**"
       - ".github/workflows/vector-search-build.yml"
   pull_request:
-    branches: [ main ]
+    branches: [ '**' ]
 
 permissions:
   contents: read
@@ -34,13 +34,13 @@ jobs:
         arguments: assemble
         build-root-directory: ImageSearchCoreService
 
-    - name: check
+    - name: check 🛎️
       uses: gradle/gradle-build-action@v2
       with:
         arguments: check
         build-root-directory: ImageSearchCoreService
 
-    - name: build container
+    - name: build container 🔧
       uses: gradle/gradle-build-action@v2
       with:
         arguments: build -x test -Dquarkus.container-image.build=true
@@ -64,7 +64,7 @@ jobs:
 
 
   deploy:
-    name: deploy to k8s
+    name: deploy to k8s 🚀
     runs-on: ubuntu-latest
     needs: build
     if: ${{ github.ref == 'main' }}
