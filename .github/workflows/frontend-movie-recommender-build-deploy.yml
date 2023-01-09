@@ -1,0 +1,32 @@
+name: Frontend Pages Build and Deploy
+on: 
+  push:
+    branches: [ '**' ]
+    paths:
+      - "MovieRecommender/frontend/**"
+      - ".github/workflows/frontend-movie-recommender-build-deploy.yml"
+  pull_request:
+    branches: [ '**' ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install and Build 🔧
+        run: |
+          npm --prefix MovieRecommender/frontend/ ci
+          npm --prefix MovieRecommender/frontend/ run build
+        env:
+          VUE_APP_BACKEND_URL: ${{ secrets.VUE_APP_BACKEND_URL }}
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ github.ref == 'main' }}
+        with:
+          folder: "MovieRecommender/frontend/dist"

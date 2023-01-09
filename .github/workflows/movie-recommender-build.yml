@@ -1,0 +1,65 @@
+name: Movie Recommender Build
+
+on:
+  push:
+    branches: [ '**' ]
+    paths:
+        - "MovieRecommender/backend/**"
+        - "helm/MovieRecommender/backend/**"
+        - ".github/workflows/movie-recommender-build.yml"
+  pull_request:
+    branches: [ '**' ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    name: build & push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: true
+
+      - name: Build & Push 🔧
+        uses: docker/build-push-action@v3
+        if: ${{ github.ref == 'feature/add-pipelines' }}
+        with:
+          context: "{{defaultContext}}:MovieRecommender/backend"
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/movie-recommender:${{ github.sha }},ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/movie-recommender:latest
+
+
+  deploy:
+    name: deploy to k8s 🚀
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.ref == 'feature/add-pipelines' }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+
+    - uses: azure/setup-helm@v3
+      id: install
+
+    - uses: azure/k8s-set-context@v2
+      with:
+        method: kubeconfig
+        kubeconfig: '${{ secrets.KUBECONFIG }}'
+
+    - name: "Deploy with Helm"
+      shell: bash
+      run: |
+        helm dep build helm/VectorSearch
+        helm upgrade --install movie-recommender-bff helm/MovieRecommender/backend --set image.tag=${{ github.sha }} --set tmdb.apiKey=${{ secrets.TMDB_API_KEY }}

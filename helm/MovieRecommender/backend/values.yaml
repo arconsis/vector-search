@@ -1,0 +1,50 @@
+replicaCount: 1
+
+cors: 
+  origin: https://arconsis.github.io
+
+tmdb:
+  apiKey: changeme
+
+image:
+  repository: ghcr.io/arconsis/vector-search/movie-recommender
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: 
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: movie-recommender-bff.k8s.fa.arconsis.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: 
+   - secretName: movie-recommender-bff-tls
+     hosts:
+       - movie-recommender-bff.k8s.fa.arconsis.com
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

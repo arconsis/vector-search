@@ -1,0 +1,71 @@
+weaviate:
+  replicas: 1
+
+  storage:
+    size: 64Gi
+    storageClassName:
+  env:
+    PROMETHEUS_MONITORING_ENABLED: true
+    QUERY_MAXIMUM_RESULTS: 10
+  backups:
+    filesystem:
+      enabled: true
+      envconfig:
+        BACKUP_FILESYSTEM_PATH: /tmp/backups
+  modules:
+    text2vec-contextionary:
+      enabled: true
+    img2vec-neural:
+      enabled: true
+
+replicaCount: 1
+
+weaviateHost: 
+  origin: changeme
+
+tmdb:
+  apiKey: changeme
+
+image:
+  repository: ghcr.io/arconsis/vector-search/image-search-core-service
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: 
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: vector-search.k8s.fa.arconsis.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: 
+   - secretName: vector-search-tls
+     hosts:
+       - vector-search.k8s.fa.arconsis.com
+
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

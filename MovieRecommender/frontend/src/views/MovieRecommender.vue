@@ -67,18 +67,13 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.recommender-wrapper {
-  display: flex;
-  flex-direction: column;
+#similar-movies {
+  margin-top: 1rem;
 }
 
 #image-upload {
   display: flex;
   justify-content: center;
-}
-
-#similar-movies {
-  margin-top: 1rem;
 }
 
 #uploaded-image {
@@ -87,7 +82,7 @@ export default Vue.extend({
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 @media screen and (max-width: 900px) {
@@ -95,6 +90,11 @@ export default Vue.extend({
     width: 25%;
     height: 25%;
   }
+}
+
+.recommender-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .copyright-tmdb {
